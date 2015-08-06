@@ -1,4 +1,4 @@
-pouchdb-getting-started-todo
-============================
+pouchdb tutorial project
+========================
 
-The source repository for the getting started tutorial for PouchDB
+First attempt to create a pouchdb app.
