@@ -3,21 +3,28 @@
   'use strict';
 
   var ENTER_KEY = 13;
-  var form_completed = document.getElementById('form_complete');
+  var save_form = document.getElementById('save-form');
   var syncDom = document.getElementById('sync-wrapper');
 
   // EDITING STARTS HERE (you dont need to edit anything above this line)
 
   var db = new PouchDB('aspirin');
-  var remoteCouch = false;
+  var remoteCouch = "http://10.254.164.30:5984/aspirin";
 
   db.changes({
 	  since: 'now',
 	  live: true
   }).on('change', showDocs);
   
-  // We have to create a new todo document and enter it in the database
+  // We have to create a new form document and enter it in the database
   function addForm() {
+	  var legalAged = document.getElementById('legal_aged_yes').checked ? "Yes" : (document.getElementById('legal_aged_no').checked ? "No" : "");
+	  var firstPregnancy = document.getElementById('first_pregnancy_yes').checked ? "Yes" : (document.getElementById('first_pregnancy_no').checked ? "No" : "");
+	  var permanentResident = document.getElementById('permanent_resident_yes').checked ? "Yes" : (document.getElementById('permanent_resident_no').checked ? "No" : "");
+	  var weeksGestation = document.getElementById('weeks_gestation_yes').checked ? "Yes" : (document.getElementById('weeks_gestation_no').checked ? "No" : "");
+	  var eligibility = document.getElementById('eligibility_yes').checked ? "Yes" : (document.getElementById('eligibility_no').checked ? "No" : "");
+	  var consentStatus = document.getElementById('consent_status_yes').checked ? "Yes" : (document.getElementById('consent_status_no').checked ? "No" : "");
+	  
 	  var answer = {
 		  _id: new Date().toISOString(),
 		  screening_id: document.getElementById('screening_id').value,
@@ -25,26 +32,42 @@
 		  date_visit: document.getElementById('date_visit').value,
 		  age: document.getElementById('age').value,
 		  estimate_age: document.getElementById('estimate_age').value,
-		  legal_aged: document.getElementById('legal_aged').value,
-		  permanent_resident: document.getElementById('permanent_resident').value,
-		  first_pregnancy: document.getElementById('first_pregnancy').value,
+		  legal_aged: legalAged,
+		  permanent_resident: permanentResident,
+		  first_pregnancy: firstPregnancy,
 		  date_lmp: document.getElementById('date_lmp').value,
 		  ga_current_pregnancy: document.getElementById('ga_current_pregnancy').value,
-		  weeks_gestation: document.getElementById('weeks_gestation').value,
-		  eligibility: document.getElementById('eligibility').value,
-		  consent_status: document.getElementById('consent_status').value,
+		  weeks_gestation: weeksGestation,
+		  eligibility: eligibility,
+		  consent_status: consentStatus,
 		  date_consent: document.getElementById('date_consent').value,
-		  completed: document.getElementById('form_complete').value
+		  interviewer_id: document.getElementById('interviewer_id').value,
+		  date_completed: document.getElementById('date_completed').value,
+		  reviewer_id: document.getElementById('reviewer_id').value,
+		  date_reviewed: document.getElementById('date_reviewed').value,
+		  data_entry_id: document.getElementById('data_entry_id').value,
+		  date_data_entry: document.getElementById('date_data_entry').value,
+		  completed: document.getElementById('form_complete').checked
 	  };
+	
 	  db.put(answer, function callback(err,result){
 		  if (!err){
 			  console.log('Successfully saved the form!');
 			  showDocs();
+			  clearForm();
+		  } else {
+		  	console.log('Error encountered saving the form!');
 		  }
 	  });
   }
+  
+  // clear form fields after saving
+  function clearForm(){
+  	$('input').val('');
+	$('input[type=radio]').attr('checked',false);
+  }
 
-  // Show the current list of todos by reading them from the database
+  // Show the current list of documents by reading them from the database
   function showDocs() {
 	  db.allDocs({include_docs: true, descending: true}, function(err, doc){
 		  redrawTodosUI(doc.rows);
@@ -77,9 +100,9 @@
   function sync() {
 	  syncDom.setAttribute('data-sync-state','syncing');
 	  var opts = {live: true};
-	  db.sync(remoteCouch, opts, syncError);	  
-	  //db.replicate.to(remoteCouch, opts, syncError);
-	  //db.replace.from(remoteCouch, opts, syncError);
+	  //db.sync(remoteCouch, opts, syncError);	  
+	  db.replicate.to(remoteCouch, opts, syncError);
+	  db.replicate.from(remoteCouch, opts, syncError);
   }
 
   // EDITING STARTS HERE (you dont need to edit anything below this line)
@@ -151,7 +174,7 @@
   
   function showDocumentSummary(row){
 	var rowDisplay = document.createElement('div');
-	rowDisplay.innerHTML = row.screening_id + " - " + row.mnh_id;
+	rowDisplay.innerHTML = row._id+ " : "+row.screening_id + " - " + row.mnh_id;
 	    
   	var li = document.createElement('li');
 	li.id = 'li_' + row._id;
@@ -175,7 +198,7 @@
   }
 
   function addEventListeners() {
-	form_completed.addEventListener( 'click', addForm);
+	save_form.addEventListener( 'click', addForm);
   }
 
   addEventListeners();
