@@ -9,7 +9,8 @@
   // EDITING STARTS HERE (you dont need to edit anything above this line)
 
   var db = new PouchDB('aspirin');
-  var remoteCouch = "http://10.254.164.30:5984/aspirin";
+  var db2 = new PouchDB('questions');
+  var remoteCouch = "http://104.236.51.244:5984/aspirin";
 
   db.changes({
 	  since: 'now',
