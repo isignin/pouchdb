@@ -431,3 +431,15 @@ label[for='toggle-all'] {
 .question{
 	font-weight: bold;
 }
+
+.menu-item {
+	padding-left: 50px;
+}
+
+.menu-item a:link {
+    text-decoration: none;
+}
+
+.menu-item a:hover {
+    color: red;
+}

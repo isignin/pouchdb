@@ -13,23 +13,31 @@
   <body>
     <section id="todoapp">
       <header id="header">
-	    <h1>ASPIRIN</h1>
+	    <h1>QUESTIONS</h1>
       </header>
       <section id="main">
-		  <div style="padding: 20px 0 20px"><img src="/images/dashboard.png" style="float:left;padding: 10px 10px 0 0" height="30" width="30"><h2>Welcome to Global Network</h2></div>
+		  <div style="padding: 20px 0 20px"><em>Here is where you create the questions</em></div>
 		  <div class="question-block">
-		     <div class="menu-item"><img src="/images/collect.png" style="float:left;padding-right: 20px" height="30" width="30"><a href="/collect.html">Collecting Data</a></div>
+		     <div class="question">Question </div>
+		     <input id="question" placeholder="Enter the question" autofocus>
+		  </div>	 
+		  <div class="question-block">
+		     <div class="question">Data Type: </div>
+		     <input id="data_type" placeholder="Specify Data Type">
 		  </div>
 		  <div class="question-block">
-		     <div class="menu-item"><img src="/images/forms.png" style="float:left;padding-right: 20px" height="30" width="30"><a href="/questions.html">Forms Manager</a></div>
+			 <div class="question">Skip conditions: </div>
+		     <input id="skip_conditions" placeholder="Skip condition">
 		  </div>
 		  <div class="question-block">
-		     <div class="menu-item"><img src="/images/questions.png" style="float:left;padding-right: 20px" height="30" width="30"><a href="/questions.html">Questions Manager</a></div>
+		     <div class="question">Validation: </div>
+		     <input id="validation" placeholder="Validation conditions"> 
 		  </div>
 		  <div class="question-block">
-		     <div class="menu-item"><img src="/images/settings.png" style="float:left;padding-right: 20px" height="30" width="30"><a href="/settings.html">Settings</a></div>
+			  <button id="save_question">Save Question</button>
 		  </div>
-          <br />
+		  <br />
+ 
       </section>
         <section id="main">
   	       <ul id="document-list"></ul>
@@ -43,10 +51,10 @@
       </footer>
     </section>
     <footer id="info">
-      <p>Global Network, 2015 RTI International. </p>
+      <p>Double-click to edit a question</p>
     </footer>
 	<script src="//cdn.jsdelivr.net/pouchdb/4.0.0/pouchdb.min.js"></script>
     <script src="js/base.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/questions.js"></script>
   </body>
 </html>

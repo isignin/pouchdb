@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ASPIRIN Study</title>
+    <link rel="stylesheet" href="style/base.css">
+	<script src="js/jquery-2.1.4.min.js"></script>
+    <!--[if IE]>
+      <script src="style/ie.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <section id="todoapp">
+      <header id="header">
+	    <h1>ASPIRIN</h1>
+      </header>
+      <section id="main">
+		  <div style="padding: 20px 0 20px"><em>*This form should be completed by the Study Coordinator for all women who are screened for participation in the study</em></div>
+		  <div class="question-block">
+		     <div class="question">Screening ID: </div>
+		     <input id="screening_id" placeholder="Please enter Screening ID" autofocus>
+		  </div>	 
+		  <div class="question-block">
+		     <div class="question">MNH ID (if available): </div>
+		     <input id="mnh_id" placeholder="Enter MNH ID">
+		  </div>
+		  <hr />
+		  <div class="question-block"><h3>Section A - ELIGIBILITY<h3></div>			  	 
+		  <div class="question-block">
+			 <div class="question">Date of visit: </div>
+		     <input id="date_visit" placeholder="Please enter Date of visit">
+		  </div>
+		  <div class="question-block">
+		     <div class="question">What is woman's age: </div>
+		     <input id="age" placeholder="Enter woman's age"> (If unknow, enter 99)
+		  </div>
+		  <div class="question-block">
+		     <div class="question">Estimate age in years: </div>
+		     <input id="estimate_age" placeholder="Age in years">
+		  </div>
+		  <div class="question-block">
+		     <div class="question">Is woman between 18-40 Years of age (or legal age of consent):</div>
+		     <input type="radio" id = "legal_aged_yes" name="legal_aged" value = "Yes">Yes<br />
+		     <input type="radio" id = "legal_aged_no" name="legal_aged" value = "No">No
+		  </div>
+		  <div class="question-block">
+		     <div class="question">Is woman permanent resident of study cluster:</div>
+		     <input type="radio" id = "permanent_resident_yes" name = "permanent_resident" value = "Yes">Yes<br />
+		     <input type="radio" id = "permanent_resident_no" name = "permanent_resident" value = "No">No
+		  </div>
+		  <div class="question-block">
+		     <div class="question">Is this the woman's first pregnancy?</div>
+		     <input type="radio" id = "first_pregnancy_yes" name = "first_pregnancy" value = "Yes">Yes<br />
+		     <input type="radio" id = "first_pregnancy_no" name = "first_pregnancy" value = "No">No
+		  </div>
+		  <div class="question-block">
+		     <div class="question">What was the first day of woman's last menstruation period (LMP)?</div>
+		     <input id="date_lmp" placeholder="Last menstruation Period ">
+		  </div>
+		  <div class="question-block">
+		     <div class="question">What is the GA of the current pregnancy as per LMP? (days)</div>
+		     <input id="ga_current_pregnancy" placeholder="GA of current pregnancy as per LMP">
+		  </div>
+		  <div class="question-block">
+		     <div class="question">Is the woman 6 0/7 to 13 6/7 weeks of gestation by LMP?</div>
+		     <input type="radio" id = "weeks_gestation_yes" name = "weeks_gestation" value = "Yes">Yes<br />
+		     <input type="radio" id = "weeks_gestation_no" name = "weeks_gestation" value = "No">No
+		  </div>
+		  <div class="question-block">
+		     <div class="question">Confirm that woman meets all eligibility criteria.</div>
+		     <input type="radio" id = "eligibility_yes" name = "eligibility" value = "Yes">Woman is eligible<br />
+		     <input type="radio" id = "eligibility_no" name = "eligibility" value = "No">Woman is not eligible
+		  </div>
+		  <hr />
+		  <div class="question-block"><h3>Section B - INFORMED CONSENT<h3></div>
+		  <div class="question-block">
+		    <div class="question" style="color:red">Review consent form with Woman and ask if she is willing to participate.</div>
+		  </div>
+		  <div class="question-block">
+		     <div class="question">Consent status:</div>
+		     <input type="radio" id = "consent_status_yes" name = = "consent_status" value = "Yes">Yes, will participate<br />
+		     <input type="radio" id = "consent_status_no" name = = "consent_status" value = "No">No, will not participate
+		  </div>
+		  <div class="question-block">
+		     <div class="question">Date consent signed?</div>
+		     <input id="date_consent" placeholder="Date of consent signed"><br />
+		  </div>
+		  <div class="question-block"> </div>
+		  <hr />
+		  <div class="question-block"><h3>Section C - COMPLETION OF FORM<h3></div>
+		  <div class="question-block">
+		     <div class="question">ID of person completing form</div>
+		     <input id="interviewer_id" placeholder="ID of person completing form"><br />
+		  </div>
+		  <div class="question-block">
+		     <div class="question">Date form completed</div>
+		     <input id="date_completed" placeholder="Date form completed"><br />
+		  </div>
+		  <div class="question-block">
+		     <div class="question">ID of person reviewing form</div>
+		     <input id="reviewer_id" placeholder="ID of person reviewing form"><br />
+		  </div>
+		  <div class="question-block">
+		     <div class="question">Date reviewed</div>
+		     <input id="date_reviewed" placeholder="Date reviewed"><br />
+		  </div>
+		  <div class="question-block">
+		     <div class="question">ID of data entry person</div>
+		     <input id="data_entry_id" placeholder="ID of data entry person"><br />
+		  </div>
+		  <div class="question-block">
+		     <div class="question">Date of Data Entry</div>
+		     <input id="date_data_entry" placeholder="Date of data entry"><br />
+		  </div>
+		  <hr />
+		  <div class="question-block">
+			<div style="font-size: 1.3em; font-weight: bold">
+			  <input type="checkbox" id="form_complete" value=1 checked> Mark form as finalized
+		    </div>
+		  </div>
+		  
+		  <div class="question-block">
+			  <button id="save-form">Save Form and Exit</button>
+		  </div>
+		  <br />
+ 
+      </section>
+        <section id="main">
+  	       <ul id="document-list"></ul>
+        </section>
+      <footer id="footer">
+	<span id="todo-count"></span>
+        <div id="sync-wrapper">
+          <div id="sync-success">Currently syncing</div>
+          <div id="sync-error">There was a problem syncing</div>
+        </div>
+      </footer>
+    </section>
+    <footer id="info">
+      <p>Double-click to edit a todo</p>
+    </footer>
+	<script src="//cdn.jsdelivr.net/pouchdb/4.0.0/pouchdb.min.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
